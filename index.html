@@ -49,7 +49,6 @@
   .page-sub { font-size: 13px; color: var(--text-secondary); font-weight: 300; line-height: 1.85; margin-bottom: 2.2rem; }
   .green-bar { width: 28px; height: 1px; background: var(--green); margin-bottom: 2.2rem; }
 
-  /* 獎品清單 */
   .prize-block { background: var(--green-light); border-radius: 2px; padding: 1rem 1.2rem; margin-bottom: 2rem; }
   .prize-eyebrow { font-size: 10px; letter-spacing: 0.15em; color: var(--green); font-weight: 400; margin-bottom: 0.7rem; }
   .prize-list { list-style: none; }
@@ -80,7 +79,7 @@
   .check-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 1rem; }
   .check-item input[type="checkbox"] { margin-top: 3px; accent-color: var(--green); width: 15px; height: 15px; flex-shrink: 0; cursor: pointer; }
   .check-label { font-size: 13px; color: var(--text-primary); font-weight: 300; line-height: 1.75; cursor: pointer; }
-  .check-label a { color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(58,125,92,0.3); }
+  .check-label a { color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(58,125,92,0.3); cursor: pointer; }
   .tag-must { font-size: 10px; color: var(--green); background: var(--green-light); padding: 1px 7px; border-radius: 3px; margin-left: 6px; letter-spacing: 0.05em; white-space: nowrap; }
 
   .btn-primary { width: 100%; padding: 1rem; background: var(--green); color: #fff; border: none; font-family: 'Noto Sans TC', sans-serif; font-size: 14px; letter-spacing: 0.12em; font-weight: 400; cursor: pointer; border-radius: 2px; transition: background 0.2s; margin-top: 2rem; display: block; }
@@ -111,12 +110,201 @@
   .cal-hint { font-size: 11px; color: var(--text-secondary); font-weight: 300; margin-top: 0.8rem; opacity: 0.7; }
 
   #page-thanks, #page-done { display: none; }
+
+  /* ── Modal ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 100;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: var(--white);
+    width: 100%;
+    max-width: 620px;
+    max-height: 80vh;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+  }
+  .modal-header {
+    padding: 1.4rem 1.8rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .modal-header-title { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 400; color: var(--text-primary); letter-spacing: 0.04em; }
+  .modal-close { background: none; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px; display: flex; align-items: center; transition: color 0.2s; }
+  .modal-close:hover { color: var(--text-primary); }
+  .modal-body { overflow-y: auto; padding: 1.8rem; flex: 1; }
+  .modal-body::-webkit-scrollbar { width: 4px; }
+  .modal-body::-webkit-scrollbar-track { background: transparent; }
+  .modal-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+  /* 活動辦法內文樣式 */
+  .terms-title-main { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 400; color: var(--text-primary); text-align: center; margin-bottom: 0.3rem; letter-spacing: 0.06em; }
+  .terms-title-sub { font-size: 13px; color: var(--text-secondary); font-weight: 300; text-align: center; margin-bottom: 2rem; }
+  .terms-divider { height: 1px; background: var(--border); margin: 1.2rem 0; }
+  .terms-section { margin-bottom: 1.4rem; }
+  .terms-section-title { font-size: 13px; font-weight: 500; color: var(--green); margin-bottom: 0.6rem; letter-spacing: 0.04em; }
+  .terms-p { font-size: 13px; color: var(--text-primary); font-weight: 300; line-height: 1.9; margin-bottom: 0.5rem; }
+  .terms-ol { list-style: none; margin: 0; padding: 0; }
+  .terms-ol li { font-size: 13px; color: var(--text-primary); font-weight: 300; line-height: 1.9; padding-left: 1.4rem; position: relative; margin-bottom: 0.4rem; }
+  .terms-ol li::before { position: absolute; left: 0; color: var(--green); font-weight: 400; }
+  .terms-ol.decimal { counter-reset: terms-counter; }
+  .terms-ol.decimal li { counter-increment: terms-counter; }
+  .terms-ol.decimal li::before { content: counter(terms-counter) '.'; }
+  .terms-sub { font-size: 12px; color: var(--text-secondary); font-weight: 300; line-height: 1.9; padding-left: 1rem; margin-bottom: 0.3rem; }
+  .terms-note { font-size: 12px; color: var(--text-secondary); font-weight: 300; line-height: 1.9; font-style: italic; margin-top: 0.5rem; }
+
+  .modal-footer {
+    padding: 1rem 1.8rem;
+    border-top: 1px solid var(--border);
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .btn-modal-close { padding: 0.6rem 1.6rem; background: var(--green); color: #fff; border: none; font-family: 'Noto Sans TC', sans-serif; font-size: 13px; letter-spacing: 0.08em; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
+  .btn-modal-close:hover { background: var(--green-dark); }
 </style>
 </head>
 <body>
+
+<!-- ── Modal：活動辦法 ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-header-title">活動辦法</div>
+      <button class="modal-close" onclick="closeModal()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="terms-title-main">Bio 黑豆茶萃洗淨濃縮慕絲全聯換購抽獎活動</div>
+      <div class="terms-title-sub">活動辦法</div>
+      <div class="terms-divider"></div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">一、活動名稱</div>
+        <div class="terms-p">Bio 黑豆茶萃洗淨濃縮慕絲全聯換購抽獎活動</div>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">二、主辦單位</div>
+        <div class="terms-p">歐萊德國際股份有限公司</div>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">三、活動期間</div>
+        <div class="terms-p">2026 年 7 月 10 日（五）至 2026 年 9 月 15 日（二）23:59 止。</div>
+        <div class="terms-p">（序號登錄截止時間以系統紀錄為準）</div>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">四、參加資格</div>
+        <div class="terms-p">凡居住於台灣地區（含澎湖、金門、馬祖）之民眾，於活動期間內於全聯福利中心換購 Bio 黑豆茶萃洗淨濃縮慕絲，並依照活動流程完成序號登錄者，即可獲得抽獎資格。</div>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">五、參加方式</div>
+        <div class="terms-p">請依下列步驟完成活動登錄：</div>
+        <ol class="terms-ol decimal">
+          <li>掃描外箱上的 QR Code，加入 O'right 歐萊德官方 LINE 帳號。</li>
+          <li>加入後系統將自動回覆官網抽獎登錄連結。</li>
+          <li>點擊連結進入官網，完成抽獎人資料填寫。</li>
+          <li>輸入箱內專屬序號，完成認證。</li>
+          <li>序號認證成功後，即自動取得一次抽獎資格。</li>
+        </ol>
+        <div class="terms-note">備註：每組專屬序號限登錄乙次，重複登錄無效。每位參加者可持多組有效序號分別登錄，每組序號各享有乙次抽獎機會，登錄組數愈多，中獎機率愈高。</div>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">六、獎品內容</div>
+        <div class="terms-p">頭獎　Roborock Saros 20 掃地機器人（市值 NT$34,980）　共 3 名</div>
+        <div class="terms-p">貳獎　Nintendo Switch 2 遊戲主機（市值 NT$14,980）　共 3 名</div>
+        <div class="terms-p">合計：6 名</div>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">七、抽獎及得獎公布</div>
+        <ol class="terms-ol decimal">
+          <li>主辦單位將於 2026 年 9 月 17 日（四）中午 12:00，於 O'right 歐萊德官方 Facebook 粉絲專頁（粉絲專頁名稱：O'right）進行線上直播抽獎，歡迎即時收看。</li>
+          <li>得獎名單將於直播結束後公布於官方粉絲專頁，並於直播結束後 3 個工作天內，以簡訊及電子郵件通知中獎者。</li>
+          <li>中獎者須於收到通知後 7 天內回覆領獎資料，逾期視同放棄中獎資格，主辦單位有權另行處理獎品，不另行通知。</li>
+        </ol>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">八、獎品寄送</div>
+        <ol class="terms-ol decimal">
+          <li>獎品限寄送至台灣本島及離島地區（澎湖、金門、馬祖），不寄送至上述以外之地區。</li>
+          <li>獎品寄送所需時間依物流狀況而定，主辦單位將於確認中獎者收件資料後，於 14 個工作天內完成寄出。</li>
+          <li>中獎者不得要求以獎品換取現金或等值商品，除獎品外，其他衍生費用由中獎者自行負擔。</li>
+        </ol>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">九、稅務規定</div>
+        <ol class="terms-ol decimal">
+          <li>依中華民國稅法規定，本活動獎品稅務規定如下：
+            <div class="terms-sub">・頭獎（市值 NT$34,980）：超過新臺幣 20,000 元，中獎者須依法負擔 10% 機會中獎稅（約 NT$3,498），主辦單位將以代扣方式辦理，並開立扣繳憑單。</div>
+            <div class="terms-sub">・貳獎（市值 NT$14,980）：未超過新臺幣 20,000 元，免扣繳機會中獎稅。惟獎品價值超過新臺幣 1,000 元，年度報稅時須計入個人所得，主辦單位將開立扣繳憑單。</div>
+          </li>
+          <li>中獎者若為中華民國境內居住之個人，主辦單位將於次年初依稅法規定開立扣繳憑單。</li>
+          <li>中獎者若非中華民國境內居住之個人，不論中獎金額，須先就中獎所得扣繳 20% 機會中獎稅後，始發予獎品，主辦單位將開立扣繳憑單。</li>
+          <li>所有稅費均由中獎者自行負擔，主辦單位不另行補貼。</li>
+        </ol>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">十、個人資料保護聲明</div>
+        <ol class="terms-ol decimal">
+          <li>參加者填寫之個人資料（包含姓名、手機號碼、電子郵件、生日），主辦單位依個人資料保護法規定，僅作為本次活動抽獎通知及得獎聯繫之用途，不作為其他商業用途。</li>
+          <li>中獎者同意主辦單位於公告得獎名單時，揭露部分個人姓名資訊（以中間字遮蔽方式呈現，如：王○文、林○萱）。</li>
+          <li>活動結束後，主辦單位將依個人資料保護法相關規定處理所蒐集之個人資料。</li>
+        </ol>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">十一、活動注意事項</div>
+        <ol class="terms-ol decimal">
+          <li>參加者於參加本活動之同時，即表示已閱讀、了解並同意本活動辦法之所有規範。</li>
+          <li>本活動限台灣地區居民參加。</li>
+          <li>參加者所填寫之資料須真實、完整，如因資料填寫不完整或不實，導致主辦單位無法聯繫，視為自動放棄中獎資格，恕不另行補抽。</li>
+          <li>如發現參加者有任何作弊、使用非法程式、偽造序號或其他不正當行為，主辦單位有權取消其參加及中獎資格，並保留法律追訴之權利。</li>
+          <li>本活動獎品以實物為準，若因不可抗力因素（如缺貨、停產等）造成無法提供指定獎品，主辦單位保留以等值獎品替換之權利，中獎者不得異議。</li>
+          <li>本活動之抽獎結果，均以主辦單位系統紀錄與認定為準。</li>
+          <li>主辦單位保留修改、變更或終止本活動辦法之權利，並於官方網站或粉絲專頁公告，不另行個別通知。</li>
+          <li>如有其他未盡事宜，悉依主辦單位之解釋辦理。</li>
+        </ol>
+      </div>
+
+      <div class="terms-section">
+        <div class="terms-section-title">十二、主辦單位聯絡資訊</div>
+        <div class="terms-p">歐萊德國際股份有限公司</div>
+        <div class="terms-p">官方網站：www.oright.com.tw</div>
+        <div class="terms-p">官方 Facebook 粉絲專頁名稱：O'right</div>
+      </div>
+
+      <div class="terms-divider"></div>
+      <div class="terms-note" style="text-align:right;">歐萊德國際股份有限公司　2026 年 7 月</div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-modal-close" onclick="closeModal()">關閉</button>
+    </div>
+  </div>
+</div>
+
 <div class="card">
 
-  <!-- ── 表單頁 ── -->
+  <!-- 表單頁 -->
   <div id="page-form">
     <div class="brand-line">
       <div class="brand-dot"></div>
@@ -125,7 +313,6 @@
     <div class="page-title">恭喜您獲得抽獎資格</div>
     <div class="page-sub">請填寫以下資料，方便我們在您中獎時第一時間通知您。</div>
     <div class="green-bar"></div>
-
     <div class="prize-block">
       <div class="prize-eyebrow">本次獎品</div>
       <ul class="prize-list">
@@ -133,7 +320,6 @@
         <li><strong>Nintendo Switch 2 遊戲主機</strong>（市值 NT$14,980）　共 3 台</li>
       </ul>
     </div>
-
     <div class="two-col">
       <div class="field-group">
         <div class="field-label">姓名 <span class="req">必填</span></div>
@@ -164,7 +350,7 @@
     <div class="check-item">
       <input type="checkbox" id="c-terms" />
       <label class="check-label" for="c-terms">
-        本人確認所填資料均屬實，並已閱讀及同意本活動之<a href="#">活動辦法</a>。
+        本人確認所填資料均屬實，並已閱讀及同意本活動之<a onclick="openModal(); return false;">活動辦法</a>。
         <span class="tag-must">必須勾選</span>
       </label>
     </div>
@@ -174,16 +360,16 @@
       <ul class="notice-list">
         <li>每組序號限登錄一次，重複登錄無效。</li>
         <li>序號登錄截止日期為 2026 年 9 月 15 日。</li>
-        <li>得獎名單將於 2026 年 9 月 17 日，於 O'right 歐萊德官方 Facebook 直播公布。</li>
+        <li>得獎名單將於 2026 年 9 月 17 日，於 O'right 歐萊德官方 Facebook 粉絲專頁直播公布。</li>
         <li>中獎者將於直播結束後 3 個工作天內以簡訊及 Email 另行通知。</li>
-        <li>中獎者需於通知後 7 天內回覆收件資料，逾期視同放棄。</li>
+        <li>中獎者需於通知後 7 天內回覆領獎資料，逾期視同放棄。</li>
         <li>獎品限寄送至台灣本島及離島地區（澎湖、金門、馬祖）。</li>
         <li>獎品價值超過 NT$1,000，依所得稅法規定，中獎者屆時須提供身分證字號以利申報。</li>
       </ul>
     </div>
   </div>
 
-  <!-- ── 感謝頁 ── -->
+  <!-- 感謝頁 -->
   <div id="page-thanks">
     <div class="brand-line">
       <div class="brand-dot"></div>
@@ -201,7 +387,7 @@
       <div>
         <div class="fb-eyebrow">追蹤官方粉絲專頁</div>
         <div class="fb-desc">掃描 QR Code 追蹤 O'right 歐萊德，直播前開啟通知，第一時間掌握得獎資訊。</div>
-        <div class="fb-url">facebook.com/hairoright</div>
+        <div class="fb-url">粉絲專頁名稱：O'right</div>
       </div>
     </div>
     <div style="margin-bottom:2rem;">
@@ -218,7 +404,7 @@
     <button class="btn-primary" onclick="goDone()">完成</button>
   </div>
 
-  <!-- ── 完結頁 ── -->
+  <!-- 完結頁 -->
   <div id="page-done">
     <div class="brand-line">
       <div class="brand-dot"></div>
@@ -229,7 +415,7 @@
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3a7d5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <div class="done-title">期待在 9 月 17 日與您相見</div>
-      <a class="cal-btn" id="cal-link" href="#" onclick="downloadCal(event)">
+      <a class="cal-btn" href="#" onclick="downloadCal(event)">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         加入行事曆　9/17 中午 12:00 直播提醒
       </a>
@@ -238,7 +424,21 @@
   </div>
 
 </div>
+
 <script>
+  function openModal() {
+    document.getElementById('modal-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal() {
+    document.getElementById('modal-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  function closeModalOutside(e) {
+    if (e.target === document.getElementById('modal-overlay')) closeModal();
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
   function goThanks() {
     const terms = document.getElementById('c-terms');
     if (!terms.checked) {
@@ -267,31 +467,24 @@
   function downloadCal(e) {
     e.preventDefault();
     const ics = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//O\'right 歐萊德//抽獎直播//ZH',
+      'BEGIN:VCALENDAR', 'VERSION:2.0',
+      "PRODID:-//O'right 歐萊德//抽獎直播//ZH",
       'BEGIN:VEVENT',
-      'UID:oright-lucky-draw-20260917@hairoright',
+      "UID:oright-lucky-draw-20260917@hairoright",
       'DTSTAMP:20260701T000000Z',
       'DTSTART:20260917T040000Z',
       'DTEND:20260917T060000Z',
-      'SUMMARY:O\'right 歐萊德抽獎直播開獎',
-      'DESCRIPTION:得獎名單將於 2026/9/17 中午 12:00 於 O\'right 歐萊德官方 Facebook 直播公布。\\nhttps://www.facebook.com/hairoright',
-      'LOCATION:https://www.facebook.com/hairoright',
-      'BEGIN:VALARM',
-      'TRIGGER:-PT30M',
-      'ACTION:DISPLAY',
-      'DESCRIPTION:O\'right 歐萊德抽獎直播即將開始',
-      'END:VALARM',
-      'END:VEVENT',
-      'END:VCALENDAR'
+      "SUMMARY:O'right 歐萊德抽獎直播開獎",
+      "DESCRIPTION:得獎名單將於 2026/9/17 中午 12:00 於 O'right 歐萊德官方 Facebook 直播公布。",
+      'LOCATION:Facebook 粉絲專頁名稱：O\'right',
+      'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY',
+      "DESCRIPTION:O'right 歐萊德抽獎直播即將開始",
+      'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n');
     const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url;
-    a.download = 'oright_lucky_draw_0917.ics';
-    a.click();
+    a.href = url; a.download = 'oright_lucky_draw_0917.ics'; a.click();
     URL.revokeObjectURL(url);
   }
 </script>
