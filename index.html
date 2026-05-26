@@ -91,7 +91,6 @@
   .notice-list li { font-size: 12px; color: var(--text-secondary); font-weight: 300; line-height: 1.95; padding-left: 0.9rem; position: relative; }
   .notice-list li::before { content: '—'; position: absolute; left: 0; color: var(--green); }
 
-  /* 感謝頁 */
   .thanks-icon { width: 48px; height: 48px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; margin-bottom: 1.6rem; }
   .thanks-confirm { font-size: 12px; color: var(--green); font-weight: 400; letter-spacing: 0.04em; margin-bottom: 0.6rem; }
   .fb-block { padding: 1.4rem 1.6rem; background: var(--bg-subtle); border-radius: 2px; display: flex; align-items: center; gap: 1.6rem; margin-bottom: 2rem; }
@@ -101,7 +100,6 @@
   .fb-url { font-size: 11px; color: var(--text-secondary); font-weight: 300; opacity: 0.7; }
   .member-label { font-size: 11px; letter-spacing: 0.12em; color: var(--text-secondary); font-weight: 400; margin-bottom: 1rem; }
 
-  /* 完結頁 */
   .done-wrap { padding: 2.5rem 0 1rem; text-align: center; }
   .done-icon { width: 56px; height: 56px; border-radius: 50%; background: var(--green-light); display: flex; align-items: center; justify-content: center; margin: 0 auto 1.6rem; }
   .done-title { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 300; color: var(--text-primary); letter-spacing: 0.04em; margin-bottom: 2rem; }
@@ -111,34 +109,20 @@
 
   #page-thanks, #page-done { display: none; }
 
-  /* ── Modal ── */
   .modal-overlay {
-    display: none;
-    position: fixed; inset: 0;
-    background: rgba(0,0,0,0.45);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem;
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,0.45); z-index: 100;
+    align-items: center; justify-content: center; padding: 1.5rem;
   }
   .modal-overlay.active { display: flex; }
   .modal {
-    background: var(--white);
-    width: 100%;
-    max-width: 620px;
-    max-height: 80vh;
-    border-radius: 2px;
-    display: flex;
-    flex-direction: column;
+    background: var(--white); width: 100%; max-width: 620px; max-height: 80vh;
+    border-radius: 2px; display: flex; flex-direction: column;
     box-shadow: 0 8px 40px rgba(0,0,0,0.15);
   }
   .modal-header {
-    padding: 1.4rem 1.8rem 1.2rem;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
+    padding: 1.4rem 1.8rem 1.2rem; border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; flex-shrink: 0;
   }
   .modal-header-title { font-family: 'Noto Serif TC', serif; font-size: 16px; font-weight: 400; color: var(--text-primary); letter-spacing: 0.04em; }
   .modal-close { background: none; border: none; cursor: pointer; color: var(--text-secondary); padding: 4px; display: flex; align-items: center; transition: color 0.2s; }
@@ -148,7 +132,6 @@
   .modal-body::-webkit-scrollbar-track { background: transparent; }
   .modal-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
 
-  /* 活動辦法內文樣式 */
   .terms-title-main { font-family: 'Noto Serif TC', serif; font-size: 18px; font-weight: 400; color: var(--text-primary); text-align: center; margin-bottom: 0.3rem; letter-spacing: 0.06em; }
   .terms-title-sub { font-size: 13px; color: var(--text-secondary); font-weight: 300; text-align: center; margin-bottom: 2rem; }
   .terms-divider { height: 1px; background: var(--border); margin: 1.2rem 0; }
@@ -165,11 +148,8 @@
   .terms-note { font-size: 12px; color: var(--text-secondary); font-weight: 300; line-height: 1.9; font-style: italic; margin-top: 0.5rem; }
 
   .modal-footer {
-    padding: 1rem 1.8rem;
-    border-top: 1px solid var(--border);
-    flex-shrink: 0;
-    display: flex;
-    justify-content: flex-end;
+    padding: 1rem 1.8rem; border-top: 1px solid var(--border);
+    flex-shrink: 0; display: flex; justify-content: flex-end;
   }
   .btn-modal-close { padding: 0.6rem 1.6rem; background: var(--green); color: #fff; border: none; font-family: 'Noto Sans TC', sans-serif; font-size: 13px; letter-spacing: 0.08em; cursor: pointer; border-radius: 2px; transition: background 0.2s; }
   .btn-modal-close:hover { background: var(--green-dark); }
@@ -210,6 +190,7 @@
       <div class="terms-section">
         <div class="terms-section-title">四、參加資格</div>
         <div class="terms-p">凡居住於台灣地區（含澎湖、金門、馬祖）之民眾，於活動期間內於全聯福利中心換購 Bio 黑豆茶萃洗淨濃縮慕絲，並依照活動流程完成序號登錄者，即可獲得抽獎資格。</div>
+        <div class="terms-p">未滿十八歲者參加本活動，應取得法定代理人同意；若中獎，須由法定代理人協同辦理領獎及相關稅務文件。</div>
       </div>
 
       <div class="terms-section">
@@ -227,9 +208,10 @@
 
       <div class="terms-section">
         <div class="terms-section-title">六、獎品內容</div>
-        <div class="terms-p">頭獎　Roborock Saros 20 掃地機器人（市值 NT$34,980）　共 3 名</div>
-        <div class="terms-p">貳獎　Nintendo Switch 2 遊戲主機（市值 NT$14,980）　共 3 名</div>
-        <div class="terms-p">合計：6 名</div>
+        <div class="terms-p">頭獎　Roborock 石頭科技 Saros 20 跨越奇兵旗艦越障掃拖王者（價值 NT$66,999）　共 1 名</div>
+        <div class="terms-p">貳獎　LE CREUSET 琺瑯鑄鐵 BIS 圓鍋 22cm（價值 NT$14,280，顏色隨機）　共 2 名</div>
+        <div class="terms-p">參獎　O'right 歐萊德經典護手霜 3 入收藏盒（價值 NT$1,680）　共 10 名</div>
+        <div class="terms-p">合計：13 名</div>
       </div>
 
       <div class="terms-section">
@@ -237,7 +219,7 @@
         <ol class="terms-ol decimal">
           <li>主辦單位將於 2026 年 9 月 17 日（四）中午 12:00，於 O'right 歐萊德官方 Facebook 粉絲專頁（粉絲專頁名稱：O'right）進行線上直播抽獎，歡迎即時收看。</li>
           <li>得獎名單將於直播結束後公布於官方粉絲專頁，並於直播結束後 3 個工作天內，以簡訊及電子郵件通知中獎者。</li>
-          <li>中獎者須於收到通知後 7 天內回覆領獎資料，逾期視同放棄中獎資格，主辦單位有權另行處理獎品，不另行通知。</li>
+          <li>中獎者須於收到通知後 7 天內提供完整領獎資料，包含：姓名、身分證字號、戶籍地址、聯絡電話、電子信箱及身分證正反面影本，以及依法扣繳所需之相關資料。未於期限內完整提供資料者，視為放棄中獎資格，主辦單位有權另行處理獎品，不另行通知。</li>
         </ol>
       </div>
 
@@ -247,6 +229,7 @@
           <li>獎品限寄送至台灣本島及離島地區（澎湖、金門、馬祖），不寄送至上述以外之地區。</li>
           <li>獎品寄送所需時間依物流狀況而定，主辦單位將於確認中獎者收件資料後，於 14 個工作天內完成寄出。</li>
           <li>中獎者不得要求以獎品換取現金或等值商品，除獎品外，其他衍生費用由中獎者自行負擔。</li>
+          <li>獎品之保固、維修及售後服務依原廠規定辦理，主辦單位不負獎品保固、維修或其他產品責任。獎品寄送時如有外觀明顯毀損，中獎者應於收受後 3 個工作天內通知主辦單位，逾期恕不受理。</li>
         </ol>
       </div>
 
@@ -254,8 +237,9 @@
         <div class="terms-section-title">九、稅務規定</div>
         <ol class="terms-ol decimal">
           <li>依中華民國稅法規定，本活動獎品稅務規定如下：
-            <div class="terms-sub">・頭獎（市值 NT$34,980）：超過新臺幣 20,000 元，中獎者須依法負擔 10% 機會中獎稅（約 NT$3,498），主辦單位將以代扣方式辦理，並開立扣繳憑單。</div>
-            <div class="terms-sub">・貳獎（市值 NT$14,980）：未超過新臺幣 20,000 元，免扣繳機會中獎稅。惟獎品價值超過新臺幣 1,000 元，年度報稅時須計入個人所得，主辦單位將開立扣繳憑單。</div>
+            <div class="terms-sub">・頭獎（價值 NT$66,999）：超過新臺幣 20,000 元，中獎者須依法負擔 10% 機會中獎稅（約 NT$6,700），主辦單位將以代扣方式辦理，並開立扣繳憑單。</div>
+            <div class="terms-sub">・貳獎（價值 NT$14,280）：未超過新臺幣 20,000 元，免扣繳機會中獎稅。惟獎品價值超過新臺幣 1,000 元，年度報稅時須計入個人所得，主辦單位將開立扣繳憑單。</div>
+            <div class="terms-sub">・參獎（價值 NT$1,680）：獎品價值超過新臺幣 1,000 元，年度報稅時須計入個人所得，主辦單位將開立扣繳憑單。</div>
           </li>
           <li>中獎者若為中華民國境內居住之個人，主辦單位將於次年初依稅法規定開立扣繳憑單。</li>
           <li>中獎者若非中華民國境內居住之個人，不論中獎金額，須先就中獎所得扣繳 20% 機會中獎稅後，始發予獎品，主辦單位將開立扣繳憑單。</li>
@@ -313,13 +297,16 @@
     <div class="page-title">恭喜您獲得抽獎資格</div>
     <div class="page-sub">請填寫以下資料，方便我們在您中獎時第一時間通知您。</div>
     <div class="green-bar"></div>
+
     <div class="prize-block">
       <div class="prize-eyebrow">本次獎品</div>
       <ul class="prize-list">
-        <li><strong>Roborock Saros 20 掃地機器人</strong>（市值 NT$34,980）　共 3 台</li>
-        <li><strong>Nintendo Switch 2 遊戲主機</strong>（市值 NT$14,980）　共 3 台</li>
+        <li><strong>Roborock 石頭科技 Saros 20 跨越奇兵旗艦越障掃拖王者</strong>（價值 NT$66,999）　共 1 名</li>
+        <li><strong>LE CREUSET 琺瑯鑄鐵 BIS 圓鍋 22cm</strong>（價值 NT$14,280，顏色隨機）　共 2 名</li>
+        <li><strong>O'right 歐萊德經典護手霜 3 入收藏盒</strong>（價值 NT$1,680）　共 10 名</li>
       </ul>
     </div>
+
     <div class="two-col">
       <div class="field-group">
         <div class="field-label">姓名 <span class="req">必填</span></div>
@@ -332,20 +319,24 @@
         <div class="field-hint">中獎後將以簡訊通知</div>
       </div>
     </div>
+
     <div class="field-group">
       <div class="field-label">電子郵件 <span class="req">必填</span></div>
       <input type="email" placeholder="your@email.com" />
       <div class="field-hint">中獎通知及確認信將寄至此信箱</div>
     </div>
+
     <div class="field-group">
       <div class="field-label">專屬序號 <span class="req">必填</span></div>
       <input type="text" placeholder="請輸入箱內的專屬序號" />
       <div class="field-hint">每組序號限登錄一次</div>
     </div>
+
     <div class="field-group">
-      <div class="field-label">生日 <span class="opt">選填</span></div>
+      <div class="field-label">生日 <span class="req">必填</span></div>
       <input type="date" />
     </div>
+
     <div class="section-gap"></div>
     <div class="check-item">
       <input type="checkbox" id="c-terms" />
@@ -355,6 +346,7 @@
       </label>
     </div>
     <button class="btn-primary" onclick="goThanks()">立即登錄，參加抽獎</button>
+
     <div class="notice-block">
       <div class="notice-title">注意事項</div>
       <ul class="notice-list">
@@ -362,9 +354,10 @@
         <li>序號登錄截止日期為 2026 年 9 月 15 日。</li>
         <li>得獎名單將於 2026 年 9 月 17 日，於 O'right 歐萊德官方 Facebook 粉絲專頁直播公布。</li>
         <li>中獎者將於直播結束後 3 個工作天內以簡訊及 Email 另行通知。</li>
-        <li>中獎者需於通知後 7 天內回覆領獎資料，逾期視同放棄。</li>
+        <li>中獎者需於通知後 7 天內提供完整領獎資料（含姓名、身分證字號、身分證正反面影本等），逾期或資料不完整視同放棄中獎資格。</li>
         <li>獎品限寄送至台灣本島及離島地區（澎湖、金門、馬祖）。</li>
-        <li>獎品價值超過 NT$1,000，依所得稅法規定，中獎者屆時須提供身分證字號以利申報。</li>
+        <li>獎品價值超過 NT$1,000，依所得稅法規定，中獎者屆時須提供身分證字號以利申報。頭獎價值超過 NT$20,000，須依法扣繳 10% 機會中獎稅。</li>
+        <li>獎品之保固及售後服務依原廠規定辦理；如收到外觀明顯毀損之獎品，請於收受後 3 個工作天內通知主辦單位。</li>
       </ul>
     </div>
   </div>
@@ -476,7 +469,7 @@
       'DTEND:20260917T060000Z',
       "SUMMARY:O'right 歐萊德抽獎直播開獎",
       "DESCRIPTION:得獎名單將於 2026/9/17 中午 12:00 於 O'right 歐萊德官方 Facebook 直播公布。",
-      'LOCATION:Facebook 粉絲專頁名稱：O\'right',
+      "LOCATION:Facebook 粉絲專頁名稱：O'right",
       'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY',
       "DESCRIPTION:O'right 歐萊德抽獎直播即將開始",
       'END:VALARM', 'END:VEVENT', 'END:VCALENDAR'
